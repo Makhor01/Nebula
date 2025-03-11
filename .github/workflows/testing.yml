@@ -26,7 +26,6 @@ jobs:
           touch .env
           echo ${{secrets.SECRET}} >> .env
 
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -34,6 +33,10 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Install Babel and Jest
+        run: |
+          npm install --save-dev @babel/preset-env @babel/preset-react babel-jest @testing-library/jest-dom
 
       - name: Find PR number
         uses: jwalton/gh-find-current-pr@v1
