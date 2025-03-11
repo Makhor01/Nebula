@@ -38,7 +38,8 @@
     "presets": [
       "@babel/preset-env",
       "@babel/preset-react"
-    ]
+    ],
+    "plugins": ["@babel/plugin-syntax-jsx"] 
   },
   "browserslist": {
     "production": [
@@ -68,5 +69,7 @@
     "jest-localstorage-mock": "^2.4.26",
     "prettier": "^3.3.3",
     "web-vitals": "^2.1.4"
+    "@babel/plugin-syntax-jsx": "^7.26.0"
+
   }
 }
