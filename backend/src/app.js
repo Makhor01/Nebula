@@ -16,11 +16,11 @@ app.use(
     helmet.contentSecurityPolicy({
         directives: {
             defaultSrc: ["'self'"], // Разрешить загрузку ресурсов только с вашего домена
-            fontSrc: ["'self'", 'http://localhost:4000', 'data:'], // Разрешить загрузку шрифтов
+            fontSrc: ["'self'", 'http://185.91.52.121:4000', 'data:'], // Разрешить загрузку шрифтов
             scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"], // Разрешить выполнение скриптов
             styleSrc: ["'self'", "'unsafe-inline'"], // Разрешить загрузку стилей
-            imgSrc: ["'self'", 'data:', 'http://localhost:4000'], // Разрешить загрузку изображений
-            connectSrc: ["'self'", 'http://localhost:4000'], // Разрешить запросы к вашему серверу
+            imgSrc: ["'self'", 'data:', 'http://185.91.52.121:4000'], // Разрешить загрузку изображений
+            connectSrc: ["'self'", 'http://185.91.52.121:4000'], // Разрешить запросы к вашему серверу
         },
     })
 );
