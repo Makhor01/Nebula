@@ -10,5 +10,5 @@ const server = http.createServer(app);
 
 // Запуск сервера
 server.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on http://185.91.52.121:${PORT}`);
 });
