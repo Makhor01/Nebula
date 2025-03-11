@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "email": "maks",
+    "password": "$2a$10$9b2pKYyZ6c1uujpHrG3z1uEzylNZft9LMkCF6IZZZqtsJPJMDi/JC",
+    "createdAt": "2025-03-11T09:41:57.053Z"
+  },
+  {
+    "id": 2,
+    "email": "horoshevmaxim@gmail.com",
+    "password": "$2a$10$soEh61zWInc6Ir0UC.w5GOBudzBZ5r/MAen98QyxEC/yMXf/RNdqi",
+    "createdAt": "2025-03-11T11:00:14.580Z"
+  }
+]
