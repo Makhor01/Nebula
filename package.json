@@ -50,6 +50,28 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/cypress/"
+    ],
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/?!(.*)"
+    ],
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy",
+      "@uiw/react-textarea-code-editor": "<rootDir>/node_modules/@uiw/react-textarea-code-editor/dist/editor.js"
+    },
+    "coverageThreshold": {
+      "global": {
+        "lines": 80
+      }
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@babel/plugin-proposal-private-property-in-object": "7.21.11",
