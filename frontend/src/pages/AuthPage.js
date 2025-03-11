@@ -27,18 +27,14 @@ const AuthPage = () => {
         try {
             console.log("Registering with values:", values);
             await axios.post("http://185.91.52.121:4000/api/auth/register", values);
-            const loginValues = {"email": values.email, "password": values.password};
-            console.log("Logging in with values:", loginValues);
-            const response = await axios.post("http://185.91.52.121:4000/api/auth/login", loginValues);
-            console.log("Login response:", response.data);
-            const expirationTime = Date.now() + 60 * 60 * 1000;
-            localStorage.setItem(
-                "authToken",
-                JSON.stringify({ token: response.data.token, expirationTime })
-            );
-            navigate("/dashboard");
+
+            // Показываем сообщение об успешной регистрации
+            alert("Registration successful! Please log in.");
+
+            // Переключаем пользователя на вкладку "Login"
+            setActiveTab("login");
         } catch (error) {
-            console.error("Error during registration/login:", error);
+            console.error("Error during registration:", error);
             alert(error.response?.data?.message || "Something went wrong");
         }
     };
@@ -76,14 +72,20 @@ const AuthPage = () => {
                 name="email"
                 rules={[{ required: true, message: "Please input your email!" }]}
             >
-                <Input placeholder="Enter your email" />
+                <Input
+                    placeholder="Enter your email"
+                    autoComplete="username" // Добавлено
+                />
             </Form.Item>
             <Form.Item
                 label="Password"
                 name="password"
                 rules={[{ required: true, message: "Please input your password!" }]}
             >
-                <Input.Password placeholder="Enter your password" />
+                <Input.Password
+                    placeholder="Enter your password"
+                    autoComplete="new-password" // Добавлено
+                />
             </Form.Item>
             <Form.Item
                 label="Confirm Password"
@@ -101,7 +103,10 @@ const AuthPage = () => {
                     }),
                 ]}
             >
-                <Input.Password placeholder="Confirm your password" />
+                <Input.Password
+                    placeholder="Confirm your password"
+                    autoComplete="current-password" // Добавлено
+                />
             </Form.Item>
             <Button type="primary" htmlType="submit" block>
                 Register
