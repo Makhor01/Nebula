@@ -20,7 +20,7 @@ const KanbanPage = () => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await axios.get("http://localhost:4000/api/calendar", {
+                const response = await axios.get("http://185.91.52.121:4000/api/calendar", {
                     headers: { Authorization: `Bearer ${getToken()}` },
                 });
                 const tasks = response.data;
@@ -68,7 +68,7 @@ const KanbanPage = () => {
         try {
             // Отправляем всю задачу с обновленным статусом
             await axios.put(
-                `http://localhost:4000/api/calendar/${task.id}`,
+                `http://185.91.52.121:4000/api/calendar/${task.id}`,
                 task, // Отправляем всю задачу, а не только статус
                 { headers: { Authorization: `Bearer ${getToken()}` } }
             );
@@ -86,7 +86,7 @@ const KanbanPage = () => {
     const handleSaveTask = async (values) => {
         try {
             const response = await axios.post(
-                "http://localhost:4000/api/calendar",
+                "http://185.91.52.121:4000/api/calendar",
                 values,
                 { headers: { Authorization: `Bearer ${getToken()}` } }
             );
@@ -111,7 +111,7 @@ const KanbanPage = () => {
 
     const handleDeleteTask = async () => {
         try {
-            await axios.delete(`http://localhost:4000/api/calendar/${selectedTask.id}`, {
+            await axios.delete(`http://185.91.52.121:4000/api/calendar/${selectedTask.id}`, {
                 headers: { Authorization: `Bearer ${getToken()}` },
             });
 
