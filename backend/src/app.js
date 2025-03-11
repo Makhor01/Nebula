@@ -9,11 +9,7 @@ const helmet = require('helmet');
 const yandexStrategy = require('./utils/yandexAuth');
 require('dotenv').config();
 // Настройка CSP
-// Инициализация Passport
-app.use(passport.initialize());
 
-// Подключение стратегии Яндекс OAuth
-passport.use(yandexStrategy);
 
 
 app.use(
