@@ -25,7 +25,89 @@ const CalendarPage = () => {
             }
         };
         fetchEvents();
+
+        // Регистрация Service Worker
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker
+                .register("/service-worker.js")
+                .then((registration) => {
+                    console.log("Service Worker registered with scope:", registration.scope);
+                })
+                .catch((error) => {
+                    console.error("Service Worker registration failed:", error);
+                });
+        }
+
+        // Запрос разрешения на уведомления
+        if ("Notification" in window) {
+            Notification.requestPermission().then((permission) => {
+                if (permission === "granted") {
+                    console.log("Notification permission granted.");
+                }
+            });
+        }
+
+        // Периодическая проверка событий
+        const interval = setInterval(() => {
+            checkForUpcomingEvents();
+        }, 5 * 60 * 1000); // Проверка каждые 5 минут
+
+        return () => clearInterval(interval); // Очистка интервала при размонтировании
     }, []);
+    const checkForUpcomingEvents = async () => {
+        try {
+            const response = await axios.get(`http://185.91.52.121:4000/api/calendar`, {
+                headers: { Authorization: `Bearer ${getToken()}` },
+            });
+            const events = response.data;
+
+            const now = dayjs();
+            const upcomingEvents = events.filter((event) => {
+                const eventTime = dayjs(event.startTime);
+                return eventTime.isAfter(now) && eventTime.diff(now, "minute") <= 30; // События в ближайшие 30 минут
+            });
+
+            if (upcomingEvents.length > 0) {
+                console.log("Upcoming events found:", upcomingEvents);
+                upcomingEvents.forEach((event) => {
+                    const notificationTitle = `Напоминание: ${event.title}`;
+                    const notificationBody = `Событие начнется в ${dayjs(event.startTime).format("HH:mm")}`;
+
+                    if ("serviceWorker" in navigator && "PushManager" in window) {
+                        navigator.serviceWorker.ready.then((registration) => {
+                            console.log("Sending notification:", notificationTitle, notificationBody);
+                            registration.showNotification(notificationTitle, {
+                                body: notificationBody,
+                            });
+                        });
+                    }
+                });
+            } else {
+                console.log("No upcoming events found.");
+            }
+        } catch (error) {
+            console.error("Failed to fetch events for notifications:", error.message);
+        }
+    };
+    const sendTestNotification = async () => {
+        if ("serviceWorker" in navigator && "PushManager" in window) {
+            try {
+                const registration = await navigator.serviceWorker.ready;
+                console.log("Service Worker is ready:", registration);
+                await registration.showNotification("Test Notification", {
+                    body: "This is a test notification.",
+                });
+                console.log("Test notification sent successfully!");
+            } catch (error) {
+                console.error("Failed to send test notification:", error);
+            }
+        } else {
+            console.error("Service Worker or Push API is not supported in this browser.");
+        }
+    };
+
+// Вызовите эту функцию для тестирования
+    sendTestNotification();
 
     const onFinish = async (values) => {
         try {
