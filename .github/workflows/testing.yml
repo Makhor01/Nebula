@@ -53,7 +53,7 @@ jobs:
       - name: Debug project structure
         run: |
           ls -la
-          ls -la public
+          ls -la frontend/public
           echo "Current working directory: $(pwd)"
 
       - name: Install Cypress
