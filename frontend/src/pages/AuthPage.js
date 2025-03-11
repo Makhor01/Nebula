@@ -11,7 +11,7 @@ const AuthPage = () => {
 
     const onLogin = async (values) => {
         try {
-            const response = await axios.post("http://localhost:4000/api/auth/login", values);
+            const response = await axios.post("http://185.91.52.121:4000/api/auth/login", values);
             const expirationTime = Date.now() + 60 * 60 * 1000; // Текущий момент + 1 час
             localStorage.setItem(
                 "authToken",
@@ -25,9 +25,9 @@ const AuthPage = () => {
 
     const onRegister = async (values) => {
         try {
-            await axios.post("http://localhost:4000/api/auth/register", values);
+            await axios.post("http://185.91.52.121:4000/api/auth/register", values);
             const loginValues = {"email": values.email, "password": values.password};
-            const response = await axios.post("http://localhost:4000/api/auth/login", loginValues);
+            const response = await axios.post("http://185.91.52.121:4000/api/auth/login", loginValues);
             const expirationTime = Date.now() + 60 * 60 * 1000;
             localStorage.setItem(
                 "authToken",
@@ -40,7 +40,7 @@ const AuthPage = () => {
     };
 
     const yandexLogin = () => {
-        window.location.href = "http://localhost:4000/api/auth/yandex";
+        window.location.href = "http://185.91.52.121:4000/api/auth/yandex";
     };
 
     const renderLoginForm = () => (
