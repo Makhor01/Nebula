@@ -25,9 +25,12 @@ const AuthPage = () => {
 
     const onRegister = async (values) => {
         try {
+            console.log("Registering with values:", values);
             await axios.post("http://185.91.52.121:4000/api/auth/register", values);
             const loginValues = {"email": values.email, "password": values.password};
+            console.log("Logging in with values:", loginValues);
             const response = await axios.post("http://185.91.52.121:4000/api/auth/login", loginValues);
+            console.log("Login response:", response.data);
             const expirationTime = Date.now() + 60 * 60 * 1000;
             localStorage.setItem(
                 "authToken",
@@ -35,6 +38,7 @@ const AuthPage = () => {
             );
             navigate("/dashboard");
         } catch (error) {
+            console.error("Error during registration/login:", error);
             alert(error.response?.data?.message || "Something went wrong");
         }
     };
