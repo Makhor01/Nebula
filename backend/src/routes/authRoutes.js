@@ -18,7 +18,7 @@ router.get(
     (req, res) => {
         // Генерация токена и редирект
         const token = jwt.sign({ userId: req.user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-        res.redirect(`http://localhost:3000/dashboard?token=${token}`);
+        res.redirect(`http://185.91.52.121:3000/dashboard?token=${token}`);
     }
 );
 
