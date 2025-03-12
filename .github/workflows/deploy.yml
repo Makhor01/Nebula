@@ -37,10 +37,6 @@ jobs:
             cd Nebula
             rm -f backend/.env
             rm -f frontend/.env
-            echo DB_NAME=$DB_NAME >> backend/.env
-            echo DB_PASSWORD=$DB_PASSWORD >> backend/.env
-            echo DB_HOST=$DB_HOST >> backend/.env
-            echo DB_PORT=$DB_PORT >> backend/.env
             echo JWT_SECRET=$JWT_SECRET >> backend/.env
             echo GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID >> backend/.env
             echo GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET >> backend/.env
