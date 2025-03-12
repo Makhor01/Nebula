@@ -23,7 +23,8 @@
     "redux": "^5.0.1"
   },
   "scripts": {
-    "test": "cypress run"
+
+    "test": "cypress run",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

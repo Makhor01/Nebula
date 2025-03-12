@@ -60,6 +60,7 @@ jobs:
         run: npm install cypress@13.15.0
 
 
+
  cypress-run:
     runs-on: ubuntu-latest
 
@@ -72,6 +73,7 @@ jobs:
 
       - name: Run Cypress tests
         run: npx cypress run
+        
 #      - name: Run Cypress tests
 #        uses: cypress-io/github-action@v6
 #        with:
