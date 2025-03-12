@@ -3,7 +3,7 @@ const { test, expect } = require('@playwright/test');
 test.describe('Auth Page Tests', () => {
     test.beforeEach(async ({page}) => {
         // Переход на страницу авторизации перед каждым тестом
-        await page.goto('http://192.168.0.2:80'); // Укажите URL вашего приложения
+        await page.goto('http://185.91.52.121:80'); // Укажите URL вашего приложения
         await page.waitForLoadState('networkidle');
     });
 
