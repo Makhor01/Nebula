@@ -31,20 +31,25 @@ jobs:
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           GOOGLE_REDIRECT_URI: ${{ secrets.GOOGLE_REDIRECT_URI }}
+          YANDEX_CLIENT_ID: ${{ secrets.YANDEX_CLIENT_ID }}
+          YANDEX_CLIENT_SECRET: ${{ secrets.YANDEX_CLIENT_SECRET }}
+          YANDEX_CALLBACK_URL: ${{ secrets.YANDEX_CALLBACK_URL }}
           HOST: ${{ secrets.HOST }}
+
+
+
         run: |
           ssh $SSH_USERNAME@$SERVER_IP << 'EOF'
             cd Nebula
             rm -f backend/.env
             rm -f frontend/.env
-            echo DB_NAME=$DB_NAME >> backend/.env
-            echo DB_PASSWORD=$DB_PASSWORD >> backend/.env
-            echo DB_HOST=$DB_HOST >> backend/.env
-            echo DB_PORT=$DB_PORT >> backend/.env
             echo JWT_SECRET=$JWT_SECRET >> backend/.env
             echo GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID >> backend/.env
             echo GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET >> backend/.env
             echo GOOGLE_REDIRECT_URI=$GOOGLE_REDIRECT_URI >> backend/.env
+            echo YANDEX_CLIENT_ID=YANDEX_CLIENT_ID >> backend/.env
+            echo YANDEX_CLIENT_SECRET=YANDEX_CLIENT_SECRET >> backend/.env
+            echo YANDEX_CALLBACK_URL=YANDEX_CALLBACK_URL >> backend/.env
             echo HOST=$HOST >> backend/.env
             echo HOST=$HOST >> frontend/.env
             git pull origin main
