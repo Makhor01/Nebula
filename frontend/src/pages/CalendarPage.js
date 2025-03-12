@@ -233,24 +233,24 @@ const CalendarPage = () => {
                 >
                     <Form form={form} onFinish={onFinish} layout="vertical">
                         <Form.Item name="title" label="Title" rules={[{ required: true }]}>
-                            <Input />
+                            <Input id="title" /> {/* Добавлен id */}
                         </Form.Item>
                         <Form.Item name="description" label="Description">
-                            <Input />
+                            <Input id="description" /> {/* Добавлен id */}
                         </Form.Item>
                         <Form.Item
                             name="startTime"
                             label="Start Time"
                             rules={[{ required: true }]}
                         >
-                            <Input type="datetime-local" />
+                            <Input type="datetime-local" id="startTime" /> {/* Добавлен id */}
                         </Form.Item>
                         <Form.Item
                             name="endTime"
                             label="End Time"
                             rules={[{ required: true }]}
                         >
-                            <Input type="datetime-local" />
+                            <Input type="datetime-local" id="endTime" /> {/* Добавлен id */}
                         </Form.Item>
                         <div style={{ display: "flex", justifyContent: "space-between" }}>
                             {isEdit && (
@@ -258,7 +258,7 @@ const CalendarPage = () => {
                                     Delete Event
                                 </Button>
                             )}
-                            <Button type="primary" htmlType="submit">
+                            <Button type="primary" htmlType="submit" id="saveButton"> {/* Добавлен id */}
                                 Save
                             </Button>
                         </div>
